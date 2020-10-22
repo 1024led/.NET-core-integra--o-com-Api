@@ -28,7 +28,7 @@ namespace Cotacao
 
             services.AddHttpClient();
 
-            string stringConexao = "Server=localhost;DataBase=CotacaoDB;Uid=root;Pwd=kaled010";
+            string stringConexao = "Server=localhost;DataBase=CotacaoDB;Uid=root;Pwd=****";
 
             services.AddDbContext<CotacaoContext>(options =>
                 options.UseMySQL(stringConexao));
