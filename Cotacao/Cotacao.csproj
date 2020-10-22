@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <Content Remove="Views\Cotacao\errorData.cshtml" />
+    <Content Remove="Views\Shared\errorExist.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Shared\errorData.cshtml" />
+    <EmbeddedResource Include="Views\Shared\errorExist.cshtml" />
+    <EmbeddedResource Include="Views\Shared\errorData.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

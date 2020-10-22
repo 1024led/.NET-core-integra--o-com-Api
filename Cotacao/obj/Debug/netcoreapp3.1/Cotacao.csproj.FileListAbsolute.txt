@@ -158,6 +158,8 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.AssemblyInfoInputs.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.AssemblyInfo.cs
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csproj.CoreCompileInputs.cache
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.RazorAssemblyInfo.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.RazorAssemblyInfo.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.TagHelpers.input.cache
@@ -171,6 +173,7 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\errorData.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
@@ -184,7 +187,3 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\staticwebass
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.dll
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.pdb
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.genruntimeconfig.cache
-C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csprojAssemblyReference.cache
-C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csproj.CoreCompileInputs.cache
-C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\errorData.cshtml.g.cs

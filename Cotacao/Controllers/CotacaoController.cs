@@ -95,20 +95,31 @@ namespace Cotacao.Controllers
             cotacao.ValorVenda = coletor.cotacaoVenda;
             cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
 
-            
 
-            if ((ModelState.IsValid) & (cotacao.ValorCompra != null))
+
+            if (!CotacaoExists(cotacao.DataStr)) 
             {
-                _context.Add(cotacao);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if ((ModelState.IsValid) & (cotacao.ValorCompra != null))
+                {
+                    _context.Add(cotacao);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View("errorData");
+                    //return RedirectToAction(nameof(Create));
+                }
+                
             }
             else
             {
-                return View("errorData");
-                //return RedirectToAction(nameof(Create));
+                return View("errorExist");
+                //return View("errorData");
             }
+
             return View(cotacao);
+
         }
 
         // GET: Cotacao/Edit/5
@@ -127,6 +138,7 @@ namespace Cotacao.Controllers
             return View(cotacao);
         }
 
+        /*
         // POST: Cotacao/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -161,6 +173,7 @@ namespace Cotacao.Controllers
             }
             return View(cotacao);
         }
+        */
 
         // GET: Cotacao/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -191,9 +204,9 @@ namespace Cotacao.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CotacaoExists(int id)
+        private bool CotacaoExists(String data)
         {
-            return _context.Cotacao.Any(e => e.CotacaoId == id);
+            return _context.Cotacao.Any(e => e.DataStr == data);
         }
     }
 }
