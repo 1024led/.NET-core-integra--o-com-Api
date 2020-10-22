@@ -4,9 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Inserir</h1>
+<br>
 
-<h4>Cotacao</h4>
+<h5> 1 - Sábados e domingos utilizam os valores da Segunda-feira seguinte para fins comerciais, se a proxima segunda do dia escolhido não chegou a data será considerada invalida.</h5>
+<br>
+<h5> 2 - Datas já inseridas no banco de dados não serão aceitas.</h5>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,18 +17,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
+                <input asp-for="Data" type="date" class="form-control" />
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Inserir" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
 
 @section Scripts {

@@ -12,34 +12,22 @@ namespace Cotacao.Models
         [Key]
         public int CotacaoId { get; set; }
 
-        //[Column("varchar(20)")]
         public string MoedaOrigem { get; set; }
 
-        //[Column("varchar(20)")]
         public string MoedaDestino { get; set; }
 
-        //[Column("varchar(6)")]
         public string ValorCompra { get; set; }
 
-        //[Column("varchar(6)")]
         public string ValorVenda { get; set; }
 
-        
         [Required]
-        ////[Column("nvarchar(2)")]
-        public int DataDia { get; set; }
-
-        [Required]
-        ////[Column("nvarchar(2)")]
-        public int DataMes { get; set; }
-        
-        [Required]
-        ////[Column("nvarchar(4)")]
-        public int DataAno { get; set; }
-
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Data { get; set; }
 
-        public string DataStr { get; set; }
+        public string RetornarData()
+        {
+            return String.Format("{0}/{1}/{2}", Data.Day, Data.Month, Data.Year);
+        }
         
 
     }

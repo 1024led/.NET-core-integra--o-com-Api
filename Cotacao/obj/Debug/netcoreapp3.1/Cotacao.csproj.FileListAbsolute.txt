@@ -156,6 +156,7 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csprojAssemblyReference.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.AssemblyInfoInputs.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.AssemblyInfo.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csproj.CoreCompileInputs.cache
@@ -168,7 +169,6 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.Razo
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Cotacao\Create.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Cotacao\Delete.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Cotacao\Details.cshtml.g.cs
-C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Cotacao\Edit.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Cotacao\Index.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
@@ -187,3 +187,4 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\staticwebass
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.dll
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.pdb
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.genruntimeconfig.cache
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\errorExist.cshtml.g.cs

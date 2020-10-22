@@ -1,37 +1,38 @@
 ﻿@model IEnumerable<Cotacao>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 
-<h1>Sistema de gerencia de Cotações</h1>
+<h1>Sistema de gerenciamento de Cotações</h1>
 
 <p>
-    <a asp-action="Create">inserir nova Cotação</a>
+    <input type="button" value="Inserir nova Cotação" onclick="location.href='@Url.Action("Create", "Cotacao")'" />
+    
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MoedaOrigem)
+                <label for="Campo">Moeda Origem</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MoedaDestino)
+                <label for="Campo">Moeda Destino</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ValorCompra)
+                <label for="Campo">Valor de compra</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ValorVenda)
+                <label for="Campo">Valor de Venda</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                <label for="Campo">Data da cotação</label>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.OrderByDescending(m => m.Data)) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MoedaOrigem)
@@ -46,11 +47,11 @@
                 @Html.DisplayFor(modelItem => item.ValorVenda)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataStr)
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Data))
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.CotacaoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CotacaoId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.CotacaoId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.CotacaoId">Apagar registro</a>
             </td>
         </tr>
 }

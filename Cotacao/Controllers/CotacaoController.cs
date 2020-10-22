@@ -93,11 +93,11 @@ namespace Cotacao.Controllers
 
             cotacao.ValorCompra = coletor.cotacaoCompra;
             cotacao.ValorVenda = coletor.cotacaoVenda;
-            cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
+            //cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
 
 
 
-            if (!CotacaoExists(cotacao.DataStr)) 
+            if (!CotacaoExists(cotacao.Data)) 
             {
                 if ((ModelState.IsValid) & (cotacao.ValorCompra != null))
                 {
@@ -108,20 +108,22 @@ namespace Cotacao.Controllers
                 else
                 {
                     return View("errorData");
-                    //return RedirectToAction(nameof(Create));
+                    
                 }
                 
             }
             else
             {
                 return View("errorExist");
-                //return View("errorData");
+                
             }
 
             return View(cotacao);
 
         }
 
+
+        /*
         // GET: Cotacao/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -138,7 +140,7 @@ namespace Cotacao.Controllers
             return View(cotacao);
         }
 
-        /*
+        
         // POST: Cotacao/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -204,9 +206,9 @@ namespace Cotacao.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CotacaoExists(String data)
+        private bool CotacaoExists(DateTime data)
         {
-            return _context.Cotacao.Any(e => e.DataStr == data);
+            return _context.Cotacao.Any(e => e.Data.Date == data.Date);
         }
     }
 }
