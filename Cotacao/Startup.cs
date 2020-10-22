@@ -28,10 +28,12 @@ namespace Cotacao
 
             services.AddHttpClient();
 
-            string stringConexao = "Server=localhost;DataBase=CotacaoDB;Uid=root;Pwd=****";
+            //string stringConexao = "Server=localhost;DataBase=CotacaoDB;Uid=root;Pwd=kaled010";
+            string stringConexao = @"Server=(localdb)\mssqllocaldb;Database=ProjetoCotacao;Trusted_Connection=True;";
 
             services.AddDbContext<CotacaoContext>(options =>
-                options.UseMySQL(stringConexao));
+                //options.UseMySQL(stringConexao));
+                options.UseSqlServer(stringConexao));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
