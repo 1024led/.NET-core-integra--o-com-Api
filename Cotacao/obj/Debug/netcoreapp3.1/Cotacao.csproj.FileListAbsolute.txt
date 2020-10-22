@@ -187,3 +187,4 @@ C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.genr
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csprojAssemblyReference.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.csproj.CoreCompileInputs.cache
 C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Cotacao.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kaled\source\repos\Cotacao\Cotacao\obj\Debug\netcoreapp3.1\Razor\Views\Shared\errorData.cshtml.g.cs

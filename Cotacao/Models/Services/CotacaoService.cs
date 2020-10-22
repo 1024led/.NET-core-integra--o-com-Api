@@ -13,9 +13,9 @@ namespace Cotacao.Models
     public class root
     {
         [JsonProperty("value")]
-        public List<Coletor> Results { get; set; }
+        public List<CotacaoService> Results { get; set; }
     }
-    public class Coletor
+    public class CotacaoService
     {
         //[{"cotacaoCompra":5.62200,"cotacaoVenda":5.62260,"dataHoraCotacao":"2020-10-16 13:04:22.018"}]
         //[Key]
@@ -46,9 +46,9 @@ namespace Cotacao.Models
 
         //}
 
-        public static async Task<Coletor> Coletar(string url)
+        public static async Task<CotacaoService> Coletar(string url)
         {
-            Coletor coletor = new Coletor();
+            CotacaoService coletor = new CotacaoService();
             string errorString;
 
             using (HttpClient client = new HttpClient())
@@ -68,15 +68,21 @@ namespace Cotacao.Models
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("SUCESSO");
-                    await response.Content.ReadFromJsonAsync<Coletor>();
+                    await response.Content.ReadFromJsonAsync<CotacaoService>();
                     string responseBody = await response.Content.ReadAsStringAsync();
 
                     root raiz = JsonConvert.DeserializeObject<root>(responseBody);
                     //List<root> myDeserializedObjList = (List<root>)Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody), typeof(List<root>));
                     errorString = null;
-                    coletor.cotacaoCompra = raiz.Results[0].cotacaoCompra;
-                    coletor.cotacaoVenda = raiz.Results[0].cotacaoVenda;
-                    coletor.dataHoraCotacao = raiz.Results[0].dataHoraCotacao;
+
+                    if (raiz.Results.Count > 0)
+                    {
+                        coletor.cotacaoCompra = raiz.Results[0].cotacaoCompra;
+                        coletor.cotacaoVenda = raiz.Results[0].cotacaoVenda;
+                        coletor.dataHoraCotacao = raiz.Results[0].dataHoraCotacao;
+
+                    }
+
 
 
                     Console.WriteLine(responseBody);

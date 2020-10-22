@@ -60,15 +60,21 @@ namespace Cotacao.Controllers
             string holdI = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='";
             string holdF = "'&$top=100&$format=json";
 
-            /*
-            string dia = Convert.ToString(cotacao.DataDia, 10);
-            string mes = Convert.ToString(cotacao.DataMes, 10);
-            string ano = Convert.ToString(cotacao.DataAno, 10);
-            */
-
             string dia = Convert.ToString(cotacao.Data.Day, 10); 
             string mes = Convert.ToString(cotacao.Data.Month, 10);
             string ano = Convert.ToString(cotacao.Data.Year, 10);
+
+            if(cotacao.Data.DayOfWeek.ToString() == "Sunday")
+            {
+                int calc = cotacao.Data.Day + 1;
+                dia = Convert.ToString(calc, 10);
+            }
+
+            if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
+            {
+                int calc = cotacao.Data.Day + 2;
+                dia = Convert.ToString(calc, 10);
+            }
 
             //string url1 = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='10-16-2020'&$top=100&$format=json";
             string url = holdI + mes + "-" + dia + "-" + ano + holdF;
@@ -76,7 +82,7 @@ namespace Cotacao.Controllers
             Console.WriteLine("verifica a url aqui");
             Console.WriteLine(url);
 
-            Coletor coletor = Coletor.Coletar(url).Result;
+            CotacaoService coletor = CotacaoService.Coletar(url).Result;
             Console.WriteLine("CHEGUEI");
             Console.WriteLine(coletor.dataHoraCotacao);
 
@@ -88,11 +94,19 @@ namespace Cotacao.Controllers
             cotacao.ValorCompra = coletor.cotacaoCompra;
             cotacao.ValorVenda = coletor.cotacaoVenda;
             cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
-            if (ModelState.IsValid)
+
+            
+
+            if ((ModelState.IsValid) & (cotacao.ValorCompra != null))
             {
                 _context.Add(cotacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View("errorData");
+                //return RedirectToAction(nameof(Create));
             }
             return View(cotacao);
         }
