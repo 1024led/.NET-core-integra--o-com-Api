@@ -54,10 +54,16 @@ namespace Cotacao.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Data")] Cotacao.Models.Cotacao cotacao)
+        public async Task<IActionResult> Create([Bind("Data")] Cotacao.Models.Cotacao cotacao, string moeda)
         {
 
             Models.Services.RequisicaoService requisicao = new Models.Services.RequisicaoService();
+
+            Console.WriteLine("moeda selecionada: " + moeda);
+
+            requisicao.Dia = Convert.ToString(cotacao.Data.Day, 10);
+            requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
+            requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
 
             if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
             {
@@ -71,31 +77,38 @@ namespace Cotacao.Controllers
                 requisicao.Dia = Convert.ToString(calc, 10);
             }
 
-                        
-            requisicao.Dia = Convert.ToString(cotacao.Data.Day, 10);
-            requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
-            requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
-
-            requisicao.moeda = "USD";
+            requisicao.moeda = moeda;
 
 
             Console.WriteLine("verifica a url aqui");
-           
+
+            Cotacao.Models.Services.SeletorMoedas seletor = new Cotacao.Models.Services.SeletorMoedas();
+
+            string MoedaOrigem = seletor.DicMoedas[moeda];
 
             CotacaoService coletor = CotacaoService.Coletar(requisicao).Result;
            
             
 
-            cotacao.MoedaOrigem = "Dolar";
+            cotacao.MoedaOrigem = MoedaOrigem;
             cotacao.MoedaDestino = "Real";
 
             cotacao.ValorCompra = coletor.cotacaoCompra;
             cotacao.ValorVenda = coletor.cotacaoVenda;
             //cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
 
+            List<Models.Cotacao> lista = CotacaoExists(cotacao.MoedaOrigem);
+            bool verify = false;
 
+            foreach(Models.Cotacao temp in lista)
+            {
+                if(temp.Data.Date == cotacao.Data.Date)
+                {
+                    verify = true;
+                }
+            }
 
-            if (!CotacaoExists(cotacao.Data)) 
+            if (!verify)
             {
                 if ((ModelState.IsValid) & (cotacao.ValorCompra != null))
                 {
@@ -112,6 +125,7 @@ namespace Cotacao.Controllers
             }
             else
             {
+                Console.WriteLine(cotacao.Data.ToString() + " " + cotacao.MoedaOrigem);
                 return View("errorExist");
                 
             }
@@ -204,9 +218,22 @@ namespace Cotacao.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CotacaoExists(DateTime data)
+        //private bool CotacaoExists(DateTime data, string moeda)
+        //{
+        //bool temp = _context.Cotacao.Any(e => e.Data.Date == data.Date);
+        //  bool temp2 = && (e => e.MoedaOrigem == moeda)
+        //}
+
+        private List<Models.Cotacao> CotacaoExists(string moeda)
         {
-            return _context.Cotacao.Any(e => e.Data.Date == data.Date);
+            string comando = "SELECT * FROM Cotacao WHERE CotacaoId = ANY(SELECT CotacaoId FROM Cotacao WHERE MoedaOrigem ='" + moeda +"'); ";
+
+            //string args = New DbParameter() { New SqlParameter() With {.ParameterName = "Vendedor", .Value = "Microsoft"} }
+            //List<Models.Cotacao> cotacoes = _context.Database.ExecuteSqlCommand(comando);
+            
+            List<Models.Cotacao> hold = _context.Cotacao.FromSqlRaw(comando).ToList();
+            return hold;
         }
+
     }
 }
