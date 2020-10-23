@@ -82,7 +82,7 @@ namespace Cotacao.Controllers
             requisicao.moeda = moeda;
 
 
-            Console.WriteLine("verifica a url aqui");
+           
 
             Cotacao.Models.Services.SeletorMoedas seletor = new Cotacao.Models.Services.SeletorMoedas();
 
