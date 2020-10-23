@@ -37,19 +37,13 @@ namespace Cotacao.Models
             CotacaoService coletor = new CotacaoService();
             string errorString;
 
-            string hold1 = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda=%27";
-            string hold2 = "%27&@dataCotacao=%27";
-            string hold3 = "%27&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao";
-
-            string url = hold1 + requisicao.moeda + hold2 +  requisicao.Mes + "-" + requisicao.Dia + "-" + requisicao.ano + hold3;
-
             using (HttpClient client = new HttpClient())
             {
-                var content = new HttpRequestMessage(HttpMethod.Get, url);
+                var content = new HttpRequestMessage(HttpMethod.Get, requisicao.ObterUrl());
 
                 HttpResponseMessage response = await client.SendAsync(content);
 
-                Console.WriteLine(url);
+                Console.WriteLine(requisicao.ObterUrl());
 
 
 
