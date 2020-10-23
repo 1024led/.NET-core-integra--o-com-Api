@@ -69,14 +69,12 @@ namespace Cotacao.Controllers
             {
                 int calc = cotacao.Data.Day + 1;
                 requisicao.Dia = Convert.ToString(calc, 10);
-                requisicao.AtualizarUrl();
             }
 
             if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
             {
                 int calc = cotacao.Data.Day + 2;
                 requisicao.Dia = Convert.ToString(calc, 10);
-                requisicao.AtualizarUrl();
             }
 
             requisicao.moeda = moeda;
