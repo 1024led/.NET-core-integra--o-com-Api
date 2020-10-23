@@ -49,9 +49,6 @@ namespace Cotacao.Controllers
             return View();
         }
 
-        // POST: Cotacao/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Data")] Cotacao.Models.Cotacao cotacao)
@@ -75,6 +72,8 @@ namespace Cotacao.Controllers
             requisicao.Dia = Convert.ToString(cotacao.Data.Day, 10);
             requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
             requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
+
+            requisicao.VerificaFimSemana(cotacao);
 
             requisicao.moeda = "USD";
 

@@ -29,7 +29,7 @@ namespace Cotacao
             services.AddHttpClient();
 
             //string stringConexao = "Server=localhost;DataBase=CotacaoDB;Uid=root;Pwd=kaled010";
-            string stringConexao = @"Server=(localdb)\mssqllocaldb;Database=ProjetoCotacao;Trusted_Connection=True;";
+            string stringConexao = @"Server=(localdb)\mssqllocaldb;Database=ProjetoCotacaoDolar;Trusted_Connection=True;";
 
             services.AddDbContext<CotacaoContext>(options =>
                 //options.UseMySQL(stringConexao));
