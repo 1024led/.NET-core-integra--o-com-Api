@@ -31,35 +31,23 @@ namespace Cotacao.Models
         public string dataHoraCotacao { get; set; }
 
 
-        //Coletor holder;
-
-        //public static Coletor Response(int dia, int mes, int ano)
-        //{
-
-        //Coletor temp = new Coletor();
-
-        // string url = "";
-
-        //temp = Coletar(url, temp).Result;
-
-        //return temp;
-
-        //}
-
-        public static async Task<CotacaoService> Coletar(string url)
+        
+        public static async Task<CotacaoService> Coletar(Models.Services.RequisicaoService requisicao)
         {
             CotacaoService coletor = new CotacaoService();
             string errorString;
+
+            string hold1 = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda=%27";
+            string hold2 = "%27&@dataCotacao=%27";
+            string hold3 = "%27&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao";
+
+            string url = hold1 + requisicao.moeda + hold2 +  requisicao.Mes + "-" + requisicao.Dia + "-" + requisicao.ano + hold3;
 
             using (HttpClient client = new HttpClient())
             {
                 var content = new HttpRequestMessage(HttpMethod.Get, url);
 
-                //var client = _clientFactory.CreateClient();
-
                 HttpResponseMessage response = await client.SendAsync(content);
-
-                //var response = await client.PostAsync(url, content);
 
                 Console.WriteLine(url);
 
@@ -67,19 +55,19 @@ namespace Cotacao.Models
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("SUCESSO");
                     await response.Content.ReadFromJsonAsync<CotacaoService>();
                     string responseBody = await response.Content.ReadAsStringAsync();
 
                     root raiz = JsonConvert.DeserializeObject<root>(responseBody);
-                    //List<root> myDeserializedObjList = (List<root>)Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody), typeof(List<root>));
+                    
                     errorString = null;
 
                     if (raiz.Results.Count > 0)
                     {
-                        coletor.cotacaoCompra = raiz.Results[0].cotacaoCompra;
-                        coletor.cotacaoVenda = raiz.Results[0].cotacaoVenda;
-                        coletor.dataHoraCotacao = raiz.Results[0].dataHoraCotacao;
+                        int index = raiz.Results.Count - 1;
+                        coletor.cotacaoCompra = raiz.Results[index].cotacaoCompra;
+                        coletor.cotacaoVenda = raiz.Results[index].cotacaoVenda;
+                        coletor.dataHoraCotacao = raiz.Results[index].dataHoraCotacao;
 
                     }
 
@@ -94,9 +82,6 @@ namespace Cotacao.Models
                     errorString = $"algo deu errado: {response.ReasonPhrase}";
                 }
             }
-
-
-
 
             return coletor;
         }

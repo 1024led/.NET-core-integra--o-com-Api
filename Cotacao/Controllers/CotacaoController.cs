@@ -57,36 +57,34 @@ namespace Cotacao.Controllers
         public async Task<IActionResult> Create([Bind("Data")] Cotacao.Models.Cotacao cotacao)
         {
 
-            string holdI = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='";
-            string holdF = "'&$top=100&$format=json";
+            Models.Services.RequisicaoService requisicao = new Models.Services.RequisicaoService();
 
-            string dia = Convert.ToString(cotacao.Data.Day, 10); 
-            string mes = Convert.ToString(cotacao.Data.Month, 10);
-            string ano = Convert.ToString(cotacao.Data.Year, 10);
-
-            if(cotacao.Data.DayOfWeek.ToString() == "Sunday")
+            if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
             {
                 int calc = cotacao.Data.Day + 1;
-                dia = Convert.ToString(calc, 10);
+                requisicao.Dia = Convert.ToString(calc, 10);
             }
 
             if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
             {
                 int calc = cotacao.Data.Day + 2;
-                dia = Convert.ToString(calc, 10);
+                requisicao.Dia = Convert.ToString(calc, 10);
             }
 
-            //string url1 = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='10-16-2020'&$top=100&$format=json";
-            string url = holdI + mes + "-" + dia + "-" + ano + holdF;
+                        
+            requisicao.Dia = Convert.ToString(cotacao.Data.Day, 10);
+            requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
+            requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
+
+            requisicao.moeda = "USD";
+
 
             Console.WriteLine("verifica a url aqui");
-            Console.WriteLine(url);
+           
 
-            CotacaoService coletor = CotacaoService.Coletar(url).Result;
-            Console.WriteLine("CHEGUEI");
-            Console.WriteLine(coletor.dataHoraCotacao);
-
-            //cotacao.Data = cotacao.DataParseExact(this.textBox1.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            CotacaoService coletor = CotacaoService.Coletar(requisicao).Result;
+           
+            
 
             cotacao.MoedaOrigem = "Dolar";
             cotacao.MoedaDestino = "Real";
