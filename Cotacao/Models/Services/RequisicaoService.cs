@@ -26,11 +26,6 @@ namespace Cotacao.Models.Services
             }
         }
 
-        public void AtualizarUrl()
-        {
-            string url = hold1 + moeda + hold2 + Mes + "-" + Dia + "-" + Ano + hold3;
-            return;
-        }
 
         public string ObterUrl()
         {
@@ -49,7 +44,7 @@ namespace Cotacao.Models.Services
                 Mes = Convert.ToString(temp.Data.Month, 10);
                 Ano =  Convert.ToString(temp.Data.Year, 10);
                
-                AtualizarUrl();
+                //AtualizarUrl();
             }
 
             if (temp.Data.DayOfWeek.ToString() == "Saturday")
@@ -60,7 +55,7 @@ namespace Cotacao.Models.Services
                 Mes = Convert.ToString(temp.Data.Month, 10);
                 Ano = Convert.ToString(temp.Data.Year, 10);
                 
-                AtualizarUrl();
+                //AtualizarUrl();
             }
 
 
