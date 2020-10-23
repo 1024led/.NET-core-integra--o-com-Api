@@ -37,6 +37,23 @@ namespace Cotacao.Models.Services
             return Url;
         }
 
+        public void VerificaFimSemana(Models.Cotacao cotacao)
+        {
+            if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
+            {
+                int calc = cotacao.Data.Day + 1;
+                Dia = Convert.ToString(calc, 10);
+                AtualizarUrl();
+            }
+
+            if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
+            {
+                int calc = cotacao.Data.Day + 2;
+                Dia = Convert.ToString(calc, 10);
+                AtualizarUrl();
+            }
+        }
+
 
 
     }

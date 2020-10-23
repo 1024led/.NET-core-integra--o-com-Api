@@ -65,19 +65,7 @@ namespace Cotacao.Controllers
             requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
             requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
 
-            if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
-            {
-                int calc = cotacao.Data.Day + 1;
-                requisicao.Dia = Convert.ToString(calc, 10);
-                requisicao.AtualizarUrl();
-            }
-
-            if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
-            {
-                int calc = cotacao.Data.Day + 2;
-                requisicao.Dia = Convert.ToString(calc, 10);
-                requisicao.AtualizarUrl();
-            }
+            requisicao.VerificaFimSemana(cotacao);
 
             requisicao.moeda = moeda;
 
@@ -220,19 +208,11 @@ namespace Cotacao.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //private bool CotacaoExists(DateTime data, string moeda)
-        //{
-        //bool temp = _context.Cotacao.Any(e => e.Data.Date == data.Date);
-        //  bool temp2 = && (e => e.MoedaOrigem == moeda)
-        //}
 
         private List<Models.Cotacao> CotacaoExists(string moeda)
         {
             string comando = "SELECT * FROM Cotacao WHERE CotacaoId = ANY(SELECT CotacaoId FROM Cotacao WHERE MoedaOrigem ='" + moeda +"'); ";
 
-            //string args = New DbParameter() { New SqlParameter() With {.ParameterName = "Vendedor", .Value = "Microsoft"} }
-            //List<Models.Cotacao> cotacoes = _context.Database.ExecuteSqlCommand(comando);
-            
             List<Models.Cotacao> hold = _context.Cotacao.FromSqlRaw(comando).ToList();
             return hold;
         }
