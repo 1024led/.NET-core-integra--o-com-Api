@@ -9,7 +9,7 @@ namespace Cotacao.Models.Services
     {
         public string Dia { get; set; }
         public string Mes { get; set; }
-        public string ano { get; set; }
+        public string Ano { get; set; }
 
         public string moeda { get; set; }
 
@@ -21,14 +21,14 @@ namespace Cotacao.Models.Services
         {
             get
             {
-                return hold1 + moeda + hold2 + Mes + "-" + Dia + "-" + ano + hold3;
+                return hold1 + moeda + hold2 + Mes + "-" + Dia + "-" + Ano + hold3;
 
             }
         }
 
         public void AtualizarUrl()
         {
-            string url = hold1 + moeda + hold2 + Mes + "-" + Dia + "-" + ano + hold3;
+            string url = hold1 + moeda + hold2 + Mes + "-" + Dia + "-" + Ano + hold3;
             return;
         }
 
@@ -37,21 +37,33 @@ namespace Cotacao.Models.Services
             return url;
         }
 
-        public void VerificaFimSemana(Models.Cotacao cotacao)
+        public void VerificaFimSemana(Models.Cotacao temp)
         {
-            if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
+            if (temp.Data.DayOfWeek.ToString() == "Sunday")
             {
-                int calc = cotacao.Data.Day + 1;
-                Dia = Convert.ToString(calc, 10);
+                
+
+               
+                temp.Data = temp.Data.AddDays(1);
+                Dia = Convert.ToString(temp.Data.Day, 10);
+                Mes = Convert.ToString(temp.Data.Month, 10);
+                Ano =  Convert.ToString(temp.Data.Year, 10);
+               
                 AtualizarUrl();
             }
 
-            if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
+            if (temp.Data.DayOfWeek.ToString() == "Saturday")
             {
-                int calc = cotacao.Data.Day + 2;
-                Dia = Convert.ToString(calc, 10);
+                
+                temp.Data = temp.Data.AddDays(2);
+                Dia = Convert.ToString(temp.Data.Day, 10);
+                Mes = Convert.ToString(temp.Data.Month, 10);
+                Ano = Convert.ToString(temp.Data.Year, 10);
+                
                 AtualizarUrl();
             }
+
+
         }
 
     }

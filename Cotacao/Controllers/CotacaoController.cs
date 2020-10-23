@@ -56,43 +56,26 @@ namespace Cotacao.Controllers
 
             Models.Services.RequisicaoService requisicao = new Models.Services.RequisicaoService();
 
-            if (cotacao.Data.DayOfWeek.ToString() == "Sunday")
-            {
-                int calc = cotacao.Data.Day + 1;
-                requisicao.Dia = Convert.ToString(calc, 10);
-            }
-
-            if (cotacao.Data.DayOfWeek.ToString() == "Saturday")
-            {
-                int calc = cotacao.Data.Day + 2;
-                requisicao.Dia = Convert.ToString(calc, 10);
-            }
-
-                        
+            DateTime dataT = cotacao.Data;            
             requisicao.Dia = Convert.ToString(cotacao.Data.Day, 10);
             requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
-            requisicao.ano = Convert.ToString(cotacao.Data.Year, 10);
+            requisicao.Ano = Convert.ToString(cotacao.Data.Year, 10);
 
             requisicao.VerificaFimSemana(cotacao);
 
+            cotacao.Data = dataT;
+
             requisicao.moeda = "USD";
 
-
-            Console.WriteLine("verifica a url aqui");
-           
-
             CotacaoService coletor = CotacaoService.Coletar(requisicao).Result;
-           
-            
+
 
             cotacao.MoedaOrigem = "Dolar";
             cotacao.MoedaDestino = "Real";
 
             cotacao.ValorCompra = coletor.cotacaoCompra;
             cotacao.ValorVenda = coletor.cotacaoVenda;
-            //cotacao.DataStr = String.Format("{0}/{1}/{2}", cotacao.Data.Day, cotacao.Data.Month, cotacao.Data.Year);
-
-
+            
 
             if (!CotacaoExists(cotacao.Data)) 
             {

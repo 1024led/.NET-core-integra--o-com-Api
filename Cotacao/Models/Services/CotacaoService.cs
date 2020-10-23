@@ -17,9 +17,7 @@ namespace Cotacao.Models
     }
     public class CotacaoService
     {
-        //[{"cotacaoCompra":5.62200,"cotacaoVenda":5.62260,"dataHoraCotacao":"2020-10-16 13:04:22.018"}]
-        //[Key]
-        //public int id { get; set; }
+
 
         [JsonProperty("cotacaoCompra")]
         public string cotacaoCompra { get; set; }
@@ -72,7 +70,7 @@ namespace Cotacao.Models
                 }
                 else
                 {
-                    Console.WriteLine("FRACASSO");
+                    
                     errorString = $"algo deu errado: {response.ReasonPhrase}";
                 }
             }
