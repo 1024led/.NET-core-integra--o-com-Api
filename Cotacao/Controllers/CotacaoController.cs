@@ -61,7 +61,7 @@ namespace Cotacao.Controllers
             requisicao.Mes = Convert.ToString(cotacao.Data.Month, 10);
             requisicao.Ano = Convert.ToString(cotacao.Data.Year, 10);
 
-            requisicao.VerificaFimSemana(cotacao);
+            requisicao.VerificaFimSemana(cotacao.Data);
 
             cotacao.Data = dataT;
 
