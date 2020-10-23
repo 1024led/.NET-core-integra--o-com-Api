@@ -103,60 +103,6 @@ namespace Cotacao.Controllers
         }
 
 
-        /*
-        // GET: Cotacao/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cotacao = await _context.Cotacao.FindAsync(id);
-            if (cotacao == null)
-            {
-                return NotFound();
-            }
-            return View(cotacao);
-        }
-
-        
-        // POST: Cotacao/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CotacaoId,MoedaOrigem,MoedaDestino,ValorCompra,ValorVenda,DataDia,DataMes,DataAno")] Cotacao.Models.Cotacao cotacao)
-        {
-            if (id != cotacao.CotacaoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(cotacao);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CotacaoExists(cotacao.CotacaoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(cotacao);
-        }
-        */
-
         // GET: Cotacao/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
